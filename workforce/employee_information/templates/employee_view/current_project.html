@@ -1,0 +1,85 @@
+{% extends "employee_view/base.html" %} {% load humanize %} {% block pageContent %}
+<style>
+	.table
+	{
+		width:100%;
+		border:2px solid black;
+		
+	}
+	.styled-table {
+		border-collapse: collapse;
+		margin: 25px 0;
+		font-size: 0.9em;
+		font-family: sans-serif;
+		min-width: 600px;
+		width:60%;
+		box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+		margin-left:170px;
+		margin-right:200px;
+	}
+	.styled-table thead tr {
+		background-color: #009879;
+		color: #ffffff;
+		text-align: left;
+	}
+	.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+}
+.styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+	
+</style>
+<div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
+    <div class="mdc-card">
+        <div class="d-flex justify-content-between">
+            <h4 class="card-title mb-0">Details of the Current Project-{{proj.name}}</h4>
+            
+        </div>
+    </div>
+</div>
+
+<div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
+    <div class="mdc-card">
+{% for proj in proj %}
+<h4>Name of the Current Project-{{proj.name}}</h4>
+<h4>Team Lead of the Project-{{proj.project_lead}}</h4>
+<h4>Start Date of the Project-{{proj.start_date}}</h4>
+
+{% endfor %}
+<table class="styled-table">
+    <thead>
+        <tr>
+            <th>File Name</th>
+			<th>Date Uploaded</th>
+            <th>Link</th>
+			
+        </tr>
+    </thead>
+    <tbody>
+
+		{% for file in file_list%}
+        <tr>
+            <td>{{file.name}}</td>
+			<td>{{file.date}}</td>
+            <td><a href="{{file.file_uploaded.url}}">Download<a></td>
+		    
+			
+        </tr>
+        {% endfor %}
+        <!-- and so on... -->
+    </tbody>
+</table>
+
+</div>
+</div>
+{% endblock %}

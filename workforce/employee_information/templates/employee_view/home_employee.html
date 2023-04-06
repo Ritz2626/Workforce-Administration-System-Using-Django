@@ -1,0 +1,199 @@
+{% extends "employee_view/base.html" %} {% load humanize %} {% block pageContent %}
+<style>
+    .card1
+    {
+        border-radius:10px;
+        background-color:#7a00ff;
+        background:#d2d2e2;
+        box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+        backdrop-filter: blur( 14px );
+-webkit-backdrop-filter: blur( 4px );
+border-radius: 10px;
+border: 1px solid rgba( 255, 255, 255, 0.18 );
+font-family:"Times New Roman";
+font-size:1vw;
+padding:30px;
+    }
+   .details h4
+   {
+    color:grey;
+    font-family:"Times New Roman";
+   }
+   .styled-table {
+    border-collapse: collapse;
+    margin: 25px 130px;
+    font-size: 0.9em;
+    font-family: 'Times New Roman';
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    width:55%;
+    padding:10px;
+    
+}
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+    font-size:1.4em;
+    margin-left:110px;
+}
+.style1 {
+    background-color: #009879;
+    text-align: center;
+    color:white;
+    font-size:1.9em;
+}
+.styled-table tr {
+    
+    text-align:left;
+    
+}
+</style>
+<div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
+    <div class="mdc-card">
+        <div class="d-flex justify-content-between">
+            <h4 class="card-title mb-0">Home Page</h4>
+        </div>
+    </div>
+</div>
+
+{%for employee in data%}
+<div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
+    <div class="mdc-card">
+                 <div class="row">
+                    <h3>Details</h3>
+                    <hr>
+                    <div class="col-sm-6 form-group">
+                       <img src="/media/{{employee.photo}}" width="150px" style="display:block;margin-left:auto;margin-right:auto;">
+                    </div>
+                    <div class="col-sm-6 card1">
+                        <br>
+                        
+                       <h4>Name:-{{employee.firstname}} {{employee.lastname}}</h4>
+                       <h4>Employee Id:-{{employee.code}}</h4>
+                       <h4>Email id:-{{employee.email}}</h4>
+                        
+                    </div>
+                    <br>
+                    <br>
+                    
+                    <div>
+                        <h3>Other Details</h3>
+                        <hr></hr>
+                    <div class="col-md-12 details">
+                        <h4 class="style1" style="color:white;">Personal Details</h4>
+
+                        <table class="styled-table table-responsive" style="margin-left:auto;margin-right:auto;">
+                            <tr>
+                            
+                        <td>Date of Birth</td>
+                        
+                        <td>{{employee.dob}}</td>
+                            </tr>
+                            <tr>
+                        <td>Gender</td>
+                        <td>{{employee.gender}}</td>
+                            </tr>
+                            <tr>
+                        <td>Address</td>
+                        <td>{{employee.address}}</td>
+                        </tr>
+                        </table>
+                    </div>
+                    <div class="col-md-12 details">
+                        <h4 class="style1" style="color:white;">Company Details</h4>
+
+                        <table class="styled-table table-responsive" style="margin-left:auto;margin-right:auto;">
+                            <tr>
+                            
+                        <td>Date of Joining</td>
+                        
+                        <td>{{employee.date_hired}}</td>
+                            </tr>
+                            <tr>
+                        <td>Salary Per Month</td>
+                        <td>Rs. {{employee.salary}}</td>
+                            </tr>
+                            <tr>
+                        <td>Department</td>
+                        <td>{{dept}}</td>
+                        </tr>
+                        <tr>
+                            <td>Position</td>
+                            <td>{{pos}}</td>
+                        </tr>
+                            <tr>
+                                <td>Project Assigned</td>
+                                <td>{{proj}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div>
+                  <br>
+                     
+                   
+                     
+                   </div>
+    </div>
+</div>
+{% endfor %}
+<!-- <table style="width:100%">
+    {% for employee in employees %}
+    <tr>
+        <td width="20%">{{ employee.code }}</td>
+        <td width="30%">{{ employee.name }}</td>
+        <td width="20%">{{ employee.contact }}</td>
+        <td width="30%">{{ employee.address }}</td>
+    </tr>
+    {% endfor %}
+</table> -->
+<!--<div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
+    <div class="mdc-card">
+        <div class="d-flex justify-content-between">
+            <h4 class="card-title mb-0">Home Page</h4>
+        </div>
+    </div>
+</div>
+<div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
+    <hr class="w-100">
+</div>
+<div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-4-tablet">
+    <div class="mdc-card info-card info-card--success">
+        <div class="card-inner">
+            <h5 class="card-title">Departments</h5>
+            <h5 class="font-weight-light pb-2 mb-1 border-bottom">{{ total_department|intcomma }}</h5>
+            <p class="tx-12 text-muted">Over All Count of Departments{{data.email}}</p>
+            <div class="card-icon-wrapper">
+                <i class="material-icons">business</i>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-4-tablet">
+    <div class="mdc-card info-card info-card--primary">
+        <div class="card-inner">
+            <h5 class="card-title">Positions</h5>
+            <h5 class="font-weight-light pb-2 mb-1 border-bottom">{{ total_position|intcomma }}</h5>
+            {% for employee in data%}
+            <p class="tx-12 text-muted">Over All Count of Positions</p>
+            <div class="card-icon-wrapper">
+                <i class="material-icons">list</i>
+               
+            </div>
+            <p>{{employee.firstname}}</p>
+            <p>{{employee.department_id_id}}</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-4-tablet">
+    <div class="mdc-card info-card info-card--info">
+        <div class="card-inner">
+            <h5 class="card-title">Employees</h5>
+            <h5 class="font-weight-light pb-2 mb-1 border-bottom">{{ total_employee|intcomma }}</h5>
+            <p class="tx-12 text-muted">Over All Count of Employees</p>
+            <div class="card-icon-wrapper">
+                <i class="material-icons">group</i>
+            </div>
+        </div>
+    </div>
+</div>-->
+{% endblock pageContent %}

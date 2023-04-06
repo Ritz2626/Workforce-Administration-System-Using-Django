@@ -1,0 +1,63 @@
+{% extends "employee_view/base.html" %} {% load humanize %} {% block pageContent %}
+{% load crispy_forms_tags %}
+<style>
+    form{
+        min-width:500px;
+    }
+</style>
+<div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
+    <div class="mdc-card">
+        <div class="d-flex justify-content-between">
+            <h4 class="card-title mb-0">Apply for leave</h4>
+        </div>
+    </div>
+</div>
+
+
+
+    
+   
+        
+            
+                
+
+                    {% if  messages %}
+                            {% for message in messages %}
+                             <div {% if message.tags %} class="{{ message.tags}}"{% endif %}>
+                                 {{ message }}
+                                 <button type="button" class="close" id = "override-start"data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
+                                 </button>
+                             </div>
+                            {% endfor %}
+                    {% endif %}
+
+                
+            
+
+            
+
+            
+                
+                    <form action="{% url 'leave_request' %}" method="POST">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button type="submit" class="btn btn-primary btn-lg btn-block">Send Request</button>
+                    </form>
+                
+
+    
+
+    
+
+     <!-- /container --> 
+
+{% endblock pageContent %}
+
+
+<script type="text/javascript">
+{% block extrajs%}
+
+
+{% endblock %}
+</script>
+

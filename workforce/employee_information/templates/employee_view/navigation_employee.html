@@ -1,0 +1,52 @@
+{% load static %}
+<!-- partial:partials/_sidebar.html -->
+<aside class="mdc-drawer mdc-drawer--dismissible mdc-drawer--open">
+    <div class="mdc-drawer__header border-bottom border-light">
+        <a href="{% url 'home-page' %}" class="brand-logo">
+            <h3 class="text-center text-light">My CTO</h3>
+        </a>
+    </div>
+    <div class="mdc-drawer__content">
+        <div class="mdc-list-group">
+            <nav class="mdc-list mdc-drawer-menu">
+                <div class="mdc-list-item mdc-drawer-item">
+                    <a class="mdc-drawer-link" href="{% url 'home_employee' %}">
+                        <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon" aria-hidden="true">home</i> Home
+                    </a>
+                </div>
+                <div class="mdc-list-item mdc-drawer-item">
+                    <a class="mdc-drawer-link" href="{% url 'department-page' %}">
+                        <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon" aria-hidden="true">assignment</i> Check Daily Task
+                    </a>
+                </div>
+                <div class="mdc-list-item mdc-drawer-item">
+                    <a class="mdc-drawer-link" href="{% url 'notices_emp' %}">
+                        <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon" aria-hidden="true">alarm</i> Notices
+                    </a>
+                </div>
+                <div class="mdc-list-item mdc-drawer-item">
+                    <a class="mdc-drawer-link" href="{% url 'position-page' %}">
+                        <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon" aria-hidden="true">visibility</i> Check Attendance
+                    </a>
+                </div>
+                <div class="mdc-list-item mdc-drawer-item">
+                    <a class="mdc-drawer-link" href="{% url 'employee-page' %}">
+                        <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon" aria-hidden="true">group</i> Redeem Coupons
+                    </a>
+                </div>
+                <div class="mdc-list-item mdc-drawer-item">
+                    <a class="mdc-drawer-link" href="{% url 'leave_request' %}">
+                        <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon" aria-hidden="true">message</i> Apply for leave
+                    </a>
+                </div>
+                <div class="mdc-list-item mdc-drawer-item">
+                    <a class="mdc-drawer-link" href="{% url 'current_project' %}">
+                        <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon" aria-hidden="true">work</i> Current Project Details
+                    </a>
+                </div>
+               
+            </nav>
+        </div>
+    </div>
+</aside>
+<!-- partial -->

@@ -1,0 +1,35 @@
+{% extends "lead_view/base.html" %} {% load humanize %} 
+{% block pageContent %}
+<div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
+    <div class="mdc-card">
+        <div class="d-flex justify-content-between">
+            <h4 class="card-title mb-0">Team Details</h4>
+        </div>
+    </div>
+</div>
+<div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
+    <div class="mdc-card">
+        <h3>Details of the project and Team Members</h3>
+            {% for team_member in team_members %}
+                 <div class="row">
+                  
+                    <hr>
+                    <div class="col-sm-6 form-group">
+                       <img src="/media/{{team_member.photo}}" width="150px" style="display:block;margin-left:auto;margin-right:auto;">
+                    </div>
+                    <div class="col-sm-6 card1">
+                        <br>
+                        
+                       <h4>Name:-{{team_member.firstname}} {{team_member.lastname}}</h4>
+                       <h4>Employee Id:-{{team_member.code}}</h4>
+                       <h4>Email id:-{{team_member.email}}</h4>
+                        
+                    </div>
+                    {% endfor %}
+                    <br>
+                    <br>
+                    
+                    
+        
+
+{% endblock pageContent %}

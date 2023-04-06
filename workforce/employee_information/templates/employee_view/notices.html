@@ -1,0 +1,107 @@
+{% extends "employee_view/base.html" %} {% load humanize %} {% block pageContent %}
+
+<div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
+    <div class="mdc-card">
+        <div class="d-flex justify-content-between">
+            <h4 class="card-title mb-0">Details of the Current Project</h4>
+        </div>
+    </div>
+</div>
+
+
+<style>
+   
+    .wrapper{
+
+    }
+    
+    .notification_wrap{
+        width: 600px;
+        margin: 12px auto 10px;
+        
+    }
+    .notify_item{
+        background:#ebe8e8fc;
+        padding:10px;
+    }
+    
+    .notification_wrap .notification_icon{
+        position: relative;
+        width: 50px;
+        height: 50px;
+        font-size: 32px;
+        margin: 0 auto;
+        text-align: center;
+        color: #605dff;
+    }
+    .notification_wrap .notification_icon .fa-bell{
+        cursor: pointer;
+    }
+    .notification_wrap .dropdown{
+        
+        height: auto;
+        background: #;
+        border-radius: 5px;
+        box-shadow: 2px 2px 3px rgba(0,0,0,0.125);
+        margin: 15px auto 0;
+        padding: 15px;
+        
+    
+    }
+    .notification_wrap .dropdown .notify_item{
+        
+        align-items: center;
+        padding: 10px;
+        border-bottom: 1px solid #dbdaff;
+    }
+    
+    .notification_wrap .dropdown .notify_item:last-child{
+        border-bottom: 0px;
+    }
+    
+    .notification_wrap .dropdown .notify_item .notify_img{
+    }
+    
+    .notification_wrap .dropdown .notify_item .notify_info p{
+        margin-bottom: 5px;
+    }
+    
+</style>
+<br>
+<div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
+    <div class="mdc-card">
+<div class="wrapper">
+	<div class="notification_wrap">
+		
+		<div class="dropdown">
+            {% for notice in notices %}
+             {% if count is 0 %}
+             <div class="notify_item">
+                 <p>No new notifications</p>
+             </div>
+            {% else %}
+			<div class="notify_item">
+				
+				<div class="notify_info">
+					<p>{{notice.subject}} </p>
+					<span class="notify_time">{{notice.message}}</span>
+				</div>
+                <div class="notify_img">
+					-{{notice.name}}
+				</div>
+                <div class="notify_time">
+					{{notice.time}}
+				</div>
+			</div>
+            <br>
+            <br>
+            {% endif %}
+			{% endfor %}
+			
+		</div>
+	</div>
+</div>
+</div>
+</div>
+     <br>
+{% endblock pageContent %}

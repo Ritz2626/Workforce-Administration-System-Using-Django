@@ -1,0 +1,142 @@
+{% extends "employee_information/base.html" %}
+{% load humanize %}
+
+
+
+{% block pageContent %}
+
+<style>
+   
+    .post {
+        padding: 0 1.5% /* matches the column and -margin values */
+    }
+    .comment-form .form-contro {
+        border: 0px;
+        background: #eee;
+        min-height: 50px; /* make the .form-control taller */
+    }
+    .comment-form > .row {
+        margin: 0 -1.5%; /* negative margin on row for new, fluid gutter */
+    }
+    .comment-form [class*="col-"] {
+            padding: 0 1.5% /* new fluid gutter to tighten up the space between col-X-6 */
+    }
+    
+    
+    @media (min-width:992px) { 
+        .post {
+            width: 50%;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .comment-form label {
+            position: absolute;
+            width: 200px;
+        }
+        .comment-form .name {
+            left: -90%;
+            top: 8px;
+            text-align: right;
+        }
+        .comment-form .subject {
+            right: -90%;
+            top: 8px;
+        }
+        .comment-form .message {
+            left: -45%;
+            top: 50%;
+            margin-top: -16px;
+            text-align: right;
+        }
+    }
+    
+.button-27 {
+  appearance: none;
+  background-color: #7a00ff;
+  border: 2px solid #1A1A1A;
+  border-radius: 15px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Roobert,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+  font-size: 16px;
+  font-weight: 600;
+  line-height: normal;
+  margin: 0;
+  min-height: 60px;
+  min-width: 0;
+  outline: none;
+  padding: 16px 24px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  margin-top:0.9vw;
+  will-change: transform;
+}
+
+.button-27:disabled {
+  pointer-events: none;
+}
+
+.button-27:hover {
+  box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+  transform: translateY(-2px);
+}
+
+.button-27:active {
+  box-shadow: none;
+  transform: translateY(0);
+}
+    
+    @media (min-width:1200px) { 
+        .post {
+            max-width: 525px;
+        }
+    }
+    
+</style>
+<div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
+    <div class="mdc-card py-2">
+        <div class="d-flex justify-content-between align-items-center">
+            <h4 class="card-title mb-0">Send Notifications</h4>
+            
+        </div>
+    </div>
+</div>
+<div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
+    <div class="mdc-card">
+            <form class="comment-form" action="/notifications" method="post" >
+                {% csrf_token %}
+                 <div class="row">
+                    <div class="col-sm-6 form-group">
+                       <label class="name">Use Your Real Name</label>
+                       <input type="text" class="form-control" name="name" placeholder="Name"/>
+                    </div>
+                    <div class="col-sm-6 form-group">
+                       <label class="subject">Subject</label>
+                       <input type="text" class="form-control" name="subject" placeholder="Subject" />
+                    </div>
+                    <br>
+                    <br>
+                    
+                    <div class="col-md-12 form-group">
+                       <label class="message">Write your message here</label>
+                       <textarea  class="form-control" cols="47" rows="7" name="message" placeholder="Message"></textarea>
+                    </div>
+                  <br>
+                     
+                    <div class="form-group col-md-12" style="text-align:center;">
+                        <button class="button-27" style="text-align:center;" type="submit" value="submit" name="login">Send Notification</button>
+                     </div> 
+        
+                     
+                   </div>
+                </form>
+    </div>
+</div>
+
+{% endblock pageContent %}

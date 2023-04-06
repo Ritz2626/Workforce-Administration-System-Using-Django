@@ -1,0 +1,136 @@
+{% extends "lead_view/base.html" %} {% load humanize %} 
+{% block pageContent %}
+<style>
+	.table
+	{
+		width:100%;
+		border:2px solid black;
+		
+	}
+	.styled-table {
+		border-collapse: collapse;
+		margin: 25px 0;
+		font-size: 0.9em;
+		font-family: sans-serif;
+		min-width: 600px;
+		width:60%;
+		box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+		margin-left:170px;
+		margin-right:200px;
+	}
+	.styled-table thead tr {
+		background-color: #009879;
+		color: #ffffff;
+		text-align: left;
+	}
+	.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+}
+.styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+	
+</style>
+<div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
+    <div class="mdc-card">
+        <div class="d-flex justify-content-between">
+            <h4 class="card-title mb-0">Upload files related to the project</h4>
+        </div>
+    </div>
+</div>
+<div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
+    <div class="mdc-card">
+        <div style="width: 500px; margin: auto;">
+			<fieldset name="Multiple Files Upload">
+				{% if msg %} {% autoescape off %} {{ msg }} {% endautoescape %} {% endif %}
+				<form method="post" action="/file-upload" enctype="multipart/form-data" id="file_upload_form">
+					{% csrf_token %}
+					<p>
+						<label>Write the name of the file</label>&nbsp;&nbsp;
+							<input type="text" name="name1"  placeholder="Enter name here">
+					</p>
+					<dl>
+						<p>
+							<label>Browse and select one or more files</label>&nbsp;&nbsp;
+							<input type="file" name="files" autocomplete="off" required multiple>
+						</p>
+					</dl>
+					
+					
+					<p>
+						<input type="submit" value="Upload" name='submit'>
+					</p>
+				</form>
+			</fieldset>
+		</div>
+
+    </div>
+</div>
+
+<!--<div class="row">
+	<div class="col-6 form-group ">
+		<table class="table table-striped table-hover">
+			<thead>
+				<td>File Name</td>
+					
+					<td>Download</td>
+			</thead>
+			
+				{% for file in file_list%}
+				<tr>
+					<td>{{file.name}}</td>
+					<td><a href="{{file.file_uploaded.url}}">Download<a></td>
+
+				</tr>
+                {% endfor %}
+				
+			
+		</table>
+	</div>
+</div>
+
+<br>
+<br>-->
+<table class="styled-table">
+    <thead>
+        <tr>
+            <th>File Name</th>
+			<th>Date Uploaded</th>
+            <th>Link</th>
+			<th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+
+		{% for file in file_list%}
+        <tr>
+            <td>{{file.name}}</td>
+			<td>{{file.date}}</td>
+            <td><a href="{{file.file_uploaded.url}}">Download<a></td>
+		    <td><a href="delete/{{file.id}}">
+			<button class="mdc-button mdc-button--raised p-1 icon-button filled-button--primary mdc-ripple-upgraded delete-data" type="button"  title="Delete">
+				<i class="material-icons mdc-button__icon">deleteoutline</i>
+			</button></a></td>
+        </tr>
+        {% endfor %}
+        <!-- and so on... -->
+    </tbody>
+</table>
+
+
+
+<script>
+    document.getElementById("file_upload_form").onsubmit = function(){
+		location.reload(true);
+	}
+</script>
+{% endblock pageContent %}
